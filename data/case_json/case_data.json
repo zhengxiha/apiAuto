@@ -1,0 +1,46 @@
+[
+    {
+        "case_name": "考勤-识别记录上传",
+        "url": "/api/callback/log/success",
+        "method": "post",
+        "params_type": "params",
+        "headers": {
+            "Content-type": "application/json;charset=UTF-8"
+        },
+        "data": {
+            "employeeId": "2772",
+            "verifyTime": "2022-9-2 8:21:00",
+            "deviceKey": "be:d8:a4:c9:b6:78",
+            "temperature": "37.0",
+            "imageUri": "03fffae2-1ce7-4801-a04c-0a9020bb44d9.jpeg",
+            "companyId": "88",
+            "anomaly": "0"
+        },
+        "expect": "msg':'(.*?)'"
+    },
+    {
+        "case_name": "考勤-统计一天数据",
+        "url": "/api/attendance/statistics/oneDayData",
+        "method": "post",
+        "params_type": "data",
+        "headers": {
+            "Content-type": "application/json;charset=UTF-8"
+        },
+        "data": {
+            "companyId": "88",
+            "searchDay": "2022-08-15"
+        },
+        "expect": "msg':'(.*?)'"
+    },
+    {
+        "case_name": "测温-统计测温数据",
+        "url": "/api/robot/cewenlog/statisticTitle?companyId=85",
+        "method": "get",
+        "params_type": "params",
+        "headers": {
+            "Content-type": "application/json;charset=UTF-8"
+        },
+        "data": null,
+        "expect": "msg':'(.*?)'"
+    }
+]

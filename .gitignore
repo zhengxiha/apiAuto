@@ -3,6 +3,16 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+#mydir
+.idea
+__pycache__/
+.pytest_cache
+*.log
+environment.properties
+reports
+
+
 # C extensions
 *.so
 

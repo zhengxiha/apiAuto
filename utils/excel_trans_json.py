@@ -34,7 +34,8 @@ class Trans_utils(object):
         "method": 5,
         "params_type": 6,
         "data": 7,
-        "expect": 8
+        "sql":8,
+        "expect": 9
     }
          # 新建一个空列表（存储每行的数据）
         case = list()
@@ -53,13 +54,14 @@ class Trans_utils(object):
                     data['headers'] = json.loads(self.sheet.cell(i, cell_header.get("headers")).value)  #数据json字符串转化为字典
                     data['data'] = eval(self.sheet.cell(i, cell_header.get("data")).value)
                     # 此处预期结果用str(), json.loads()或者eval() 处理，将json格式转为str，以实际情况选择对应函数
+                    data['sql'] = str(self.sheet.cell(i, cell_header.get("sql")).value)
                     data['expect'] = str(self.sheet.cell(i, cell_header.get("expect")).value)
                     # 将字典追加到列表
                     case.append(data)
 
                 except Exception as e:
                     # self.write_excel([i, cell_config.get("desc")], e)
-                    logger.info(f"第{i}行写入失败，请检查数据格式是否正确！{e}！")
+                    logger.info(f"第{i}行读取失败，请检查数据格式是否正确！{e}！")
             # print(data)
         logger.info("------------excel数据读取结束！------------")
         # 将列表数据写入json
@@ -72,5 +74,5 @@ class Trans_utils(object):
 
 if __name__=='__main__':
 
-    data1=Trans_utils("D:\MySoftware\AutoTest\apiAuto\data\case_data.xlsx").get_excel_data()
+    data1=Trans_utils("D:\MySoftware\AutoTest\\apiAuto1\data\case_data.xlsx").get_excel_data()
     print(data1)

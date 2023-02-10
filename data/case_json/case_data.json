@@ -16,6 +16,7 @@
             "companyId": "88",
             "anomaly": "0"
         },
+        "sql": "select distinct employee_id from attendance_log where employee_id=2492",
         "expect": "msg':'(.*?)'"
     },
     {
@@ -30,6 +31,7 @@
             "companyId": "88",
             "searchDay": "2022-08-15"
         },
+        "sql": "None",
         "expect": "msg':'(.*?)'"
     },
     {
@@ -41,6 +43,7 @@
             "Content-type": "application/json;charset=UTF-8"
         },
         "data": null,
-        "expect": "msg':'(.*?)'"
+        "sql": "select employee_id from attendance_log where employee_id=2492 and (attendance_type=1)",
+        "expect": [2492]
     }
 ]

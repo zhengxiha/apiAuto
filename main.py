@@ -23,6 +23,6 @@ if __name__ == '__main__':
     time.sleep(3)
 
 
-    os.system("allure generate ./reports/temps -o ./reports/report_html ")
+    os.system("allure generate ./reports/temps -o ./reports/report_html --clean")
     # os.system("pytest -v -m attendance1")
 

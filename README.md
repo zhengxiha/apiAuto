@@ -3,7 +3,9 @@
 
 ### 一、目录文件说明 
 common---存放公共类，如数据库连接、http接口封装、断言封装 
-
+    assert_utils.py--封装断言
+    getSqldata.py--数据库连接
+    http_utils.py--http请求方式封装
 config
 
     global_config.py--存放环境域名，当前用TEST_HOST来做测试，后面应该用一个变量来切换各环境
@@ -41,7 +43,9 @@ requirements.txt--框架内所需库
 一、安装库
 运行requirements.txt
 
-二、使用utils/read_jsonfile_utils.py将excel文件中的用例转化为json文件，
+二、步骤
+
+使用utils/read_jsonfile_utils.py将excel文件中的用例转化为json文件，
 转化后的json文件放在data中的case_json目录
 
 

@@ -46,4 +46,4 @@ if __name__ == '__main__':
     # dataitem = opers.get_value('基础设置-店铺管理-新增数据')
     # print(dataitem)
     # jsondata=ReadJsonFileUtils("..\\data\\test1.json").get_json_data()
-    jsondata=ReadJsonFileUtils("..\\data\\case_json\\case_data1.json").get_data()
+    jsondata=ReadJsonFileUtils("../data/case_json/case_data1.json").get_data()

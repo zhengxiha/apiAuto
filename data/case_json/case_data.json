@@ -1,6 +1,6 @@
 [
     {
-        "case_name": "考勤-识别记录上传",
+        "case_name": "考勤-识别记录上传（响应键值断言）",
         "url": "/api/callback/log/success",
         "method": "post",
         "params_type": "params",
@@ -17,10 +17,11 @@
             "anomaly": "0"
         },
         "sql": "select distinct employee_id from attendance_log where employee_id=2492",
-        "expect": "msg':'(.*?)'"
+        "assert_type": "json_key_value",
+        "expect": "{\"code\":\"2000\"}"
     },
     {
-        "case_name": "考勤-统计一天数据",
+        "case_name": "考勤-统计一天数据(键值对断言)",
         "url": "/api/attendance/statistics/oneDayData",
         "method": "post",
         "params_type": "data",
@@ -32,10 +33,11 @@
             "searchDay": "2022-08-15"
         },
         "sql": "None",
-        "expect": "msg':'(.*?)'"
+        "assert_type": "body_regexp",
+        "expect": "\"msg\":\"(.*?)\""
     },
     {
-        "case_name": "测温-统计测温数据",
+        "case_name": "测温-统计测温数据（空）",
         "url": "/api/robot/cewenlog/statisticTitle?companyId=85",
         "method": "get",
         "params_type": "params",
@@ -43,7 +45,75 @@
             "Content-type": "application/json;charset=UTF-8"
         },
         "data": null,
-        "sql": "select employee_id from attendance_log where employee_id=2492 and (attendance_type=1)",
-        "expect": [2492]
+        "sql": "select distinct employee_id from attendance_log where employee_id=2494",
+        "assert_type": "none",
+        "expect": "msg':'(.*?)'"
+    },
+    {
+        "case_name": "测温-获取测温人员（键是否存在）",
+        "url": "/api/robot/cewenlog/list",
+        "method": "post",
+        "params_type": "data",
+        "headers": {
+            "Content-type": "application/json;charset=UTF-8"
+        },
+        "data": {
+            "companyId": "88",
+            "searchStartTime": "2022-11-11 00:00:00",
+            "page": "1",
+            "size": "500",
+            "anomaly": "1"
+        },
+        "sql": "None",
+        "assert_type": "json_key",
+        "expect": "data,code"
+    },
+    {
+        "case_name": "考勤-统计一天数据(头部键断言)",
+        "url": "/api/attendance/statistics/oneDayData",
+        "method": "post",
+        "params_type": "data",
+        "headers": {
+            "Content-type": "application/json;charset=UTF-8"
+        },
+        "data": {
+            "companyId": "88",
+            "searchDay": "2022-08-15"
+        },
+        "sql": "None",
+        "assert_type": "header_key_check",
+        "expect": "Connection"
+    },
+    {
+        "case_name": "考勤-统计一天数据(头部键值对断言)",
+        "url": "/api/attendance/statistics/oneDayData",
+        "method": "post",
+        "params_type": "data",
+        "headers": {
+            "Content-type": "application/json;charset=UTF-8"
+        },
+        "data": {
+            "companyId": "88",
+            "searchDay": "2022-08-15"
+        },
+        "sql": "None",
+        "assert_type": "header_key_value_check",
+        "expect": "{\"Connection\":\"keep-alive\"}"
+    },
+    {
+        "case_name": "考勤-统计一天数据(状态码断言)",
+        "url": "/api/attendance/statistics/oneDayData",
+        "method": "post",
+        "params_type": "data",
+        "headers": {
+            "Content-type": "application/json;charset=UTF-8"
+        },
+        "data": {
+            "companyId": "88",
+            "searchDay": "2022-08-15"
+        },
+        "sql": "None",
+        "assert_type": "response_code_check",
+        "expect": "200"
     }
 ]

@@ -20,10 +20,9 @@ class HttpUtils:
         test_data=res.text
         if res.status_code != 200:
             raise Exception(u"请求异常")
-        result = json.loads(res.text)
-        # print("结果：",result)
-        return result
-
+        # result = json.loads(res.text)  #封装断言后这个地方不需要了，直接将响应对象返回即可
+        # return result
+        return res
 
     '''
     get方法封装
@@ -36,16 +35,12 @@ class HttpUtils:
         :param url:
         :return:
         """
-        req_headers = json.dumps(headers)
-        # print("接口请求url：" + url)
-        # print("接口请求headers：" + req_headers)
         res = requests.get(url, headers=headers)
-        # print("接口返回结果：" + res.text)
         if res.status_code != 200:
             raise Exception(u"请求异常")
-        result = json.loads(res.text)
-        return result
-
+        # result = json.loads(res.text)
+        # return result
+        return res
 
     '''
     请求方法封装--优化

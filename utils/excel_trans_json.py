@@ -35,12 +35,13 @@ class Trans_utils(object):
         "params_type": 6,
         "data": 7,
         "sql":8,
-        "expect": 9
+        "assert_type":9,
+        "expect": 10
     }
          # 新建一个空列表（存储每行的数据）
         case = list()
         # 遍历每行数据
-        for i in range(2, self.row + 1):
+        for i in range(3, self.row + 1):
             # 新建空字典（存储每行数据）
             data = dict()
             # 判断是否执行
@@ -55,6 +56,7 @@ class Trans_utils(object):
                     data['data'] = eval(self.sheet.cell(i, cell_header.get("data")).value)
                     # 此处预期结果用str(), json.loads()或者eval() 处理，将json格式转为str，以实际情况选择对应函数
                     data['sql'] = str(self.sheet.cell(i, cell_header.get("sql")).value)
+                    data['assert_type'] = str(self.sheet.cell(i, cell_header.get("assert_type")).value)
                     data['expect'] = str(self.sheet.cell(i, cell_header.get("expect")).value)
                     # 将字典追加到列表
                     case.append(data)

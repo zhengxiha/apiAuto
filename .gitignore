@@ -12,7 +12,7 @@ __pycache__/
 environment.properties
 reports
 getSqldata.py
-common/getSqldata.py
+#common/getSqldata.py
 
 # C extensions
 *.so

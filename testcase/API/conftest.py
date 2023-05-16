@@ -26,10 +26,10 @@ def login_ticket():
         'Content-Type': 'application/json; charset=UTF-8'
     }
     params = {
-        "username": "zheng-test",
-        "password": "123456",
+        "username": "",
+        "password": "",
     }
-    # url = 'http://192.168.1.128/api/base-admin/adminUser/login'    #不知哪来的接口
+
     url = TEST_HOST+'/api/adminUser/login'
     logger.info('开始调用登录接口:{}'.format(url))
     trans_params=json.dumps(params)
